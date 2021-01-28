@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BarBackground, ProgressBarActive } from "./style";
 
-function App() {
+const App = () => {
+  const [valueRange, setValueRange] = useState(0);
+  const handleChangeRange = (e) => {
+    setValueRange(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {valueRange}%<br/>
+      <BarBackground>
+        <ProgressBarActive range={valueRange}/>
+      </BarBackground>
+      <input type="range" step="0.1" max="200" defaultValue="0" onChange={handleChangeRange} />
+      
     </div>
   );
-}
+};
 
 export default App;
